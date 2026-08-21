@@ -5,6 +5,8 @@ let TRACKS = [];        // track metadata from tracks.json
 let BOSS_IDS = [];      // boss track ids (follow track 9)
 const changes = {};     // trackId -> {file: File, url: blobURL, name: string}
 let MUSIC_TEMPLATE = ''; // vanilla music.xml text (fetched)
+const converting = {};   // trackId -> true while converting
+let convertQueue = Promise.resolve();  // chain of conversions
 
 const GROUPS = {
   floors: '楼层 BGM',
@@ -132,8 +134,6 @@ function resetOne(id) {
 }
 
 // ---- async convert queue (ffmpeg is single-instance, run serially) ----
-const converting = {};   // trackId -> true while converting
-let convertQueue = Promise.resolve();  // chain of conversions
 
 async function uploadTo(id, files, input) {
   if (!files || !files.length) return;
