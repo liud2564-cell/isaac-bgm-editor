@@ -26,6 +26,8 @@ async function init() {
   render();
   document.getElementById('status').textContent =
     `${TRACKS.length} 个场景 · 改完点右上角生成`;
+  // background-preload the convert engine so first import is instant
+  setTimeout(loadFFmpeg, 500);
 }
 
 // ---------- ffmpeg.wasm (lazy load, files hosted locally) ----------
@@ -91,20 +93,21 @@ function render() {
     cards.className = 'cards';
     for (const t of items) {
       const ch = changes[t.id];
+      const conv = converting[t.id];
       const card = document.createElement('div');
-      card.className = 'card' + (ch ? ' modified' : '');
+      card.className = 'card' + (ch || conv ? ' modified' : '');
       const isBossLinked = BOSS_IDS.includes(t.id);
       card.innerHTML = `
         <div class="head">
           <span class="name">${t.cn || t.name}${t.cn ? ` <span class="badge">${t.name}</span>` : ''}</span>
           <span class="dur">${ch ? fmtDur(ch.dur || 0) : (t.dur ? fmtDur(t.dur) : '')}</span>
         </div>
-        <div class="cur">🎵 ${ch ? ch.name : (t.path || '无')}${isBossLinked && !ch ? ' <span class="badge">Boss联动</span>' : ''}</div>
-        ${ch ? `<audio controls preload="metadata" src="${ch.url}"></audio>` : ''}
+        <div class="cur">🎵 ${conv ? '⏳ 转码中…' : (ch ? ch.name : (t.path || '无'))}${isBossLinked && !ch && !conv ? ' <span class="badge">Boss联动</span>' : ''}</div>
+        ${ch && !conv ? `<audio controls preload="metadata" src="${ch.url}"></audio>` : ''}
         <div class="row">
           <button class="btn orange" onclick="pickFile('${t.id}')">📁 导入音乐</button>
-          <input type="file" id="file_${t.id}" accept="audio/*" style="display:none"
-                 onchange="uploadTo('${t.id}', this.files[0], this)">
+          <input type="file" id="file_${t.id}" accept="audio/*" multiple style="display:none"
+                 onchange="uploadTo('${t.id}', this.files, this)">
           ${ch ? `<button class="btn" onclick="resetOne('${t.id}')">↩ 还原</button>` : ''}
         </div>`;
       cards.appendChild(card);
@@ -128,14 +131,25 @@ function resetOne(id) {
   render();
 }
 
-async function uploadTo(id, file, input) {
-  if (!file) return;
+// ---- async convert queue (ffmpeg is single-instance, run serially) ----
+const converting = {};   // trackId -> true while converting
+let convertQueue = Promise.resolve();  // chain of conversions
+
+async function uploadTo(id, files, input) {
+  if (!files || !files.length) return;
   input.value = '';
-  const busy = document.getElementById('busy');
-  const bt = document.getElementById('busyText');
-  busy.style.display = 'flex';
+  // start engine load in background (no blocking UI)
+  loadFFmpeg();
+  // enqueue each file; each converts then applies to this track
+  for (const file of files) {
+    convertQueue = convertQueue.then(() => doConvert(id, file));
+  }
+}
+
+async function doConvert(id, file) {
+  converting[id] = true;
+  render();
   try {
-    bt.textContent = `转码中：${file.name}\n(首次需加载引擎约30MB)`;
     const blob = await convertToOgg(file);
     const url = URL.createObjectURL(blob);
     if (changes[id] && changes[id].url) URL.revokeObjectURL(changes[id].url);
@@ -143,9 +157,10 @@ async function uploadTo(id, file, input) {
     toast('已导入：' + file.name);
   } catch (e) {
     toast('导入失败：' + e.message);
+  } finally {
+    delete converting[id];
+    render();
   }
-  busy.style.display = 'none';
-  render();
 }
 
 function probeDuration(url) {
