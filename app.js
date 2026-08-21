@@ -137,12 +137,22 @@ function resetOne(id) {
 
 async function uploadTo(id, files, input) {
   if (!files || !files.length) return;
+  // snapshot files BEFORE clearing input (FileList is live, clearing kills it)
+  const list = Array.from(files);
   input.value = '';
   // start engine load in background (no blocking UI)
   loadFFmpeg();
-  // enqueue each file; each converts then applies to this track
-  for (const file of files) {
-    convertQueue = convertQueue.then(() => doConvert(id, file));
+  // enqueue each file; queue is a promise chain where each task is
+  // isolated with its own catch so one failure never blocks the rest
+  for (const file of list) {
+    const task = async () => {
+      try {
+        await doConvert(id, file);
+      } catch (e) {
+        console.error('convert task error:', e);
+      }
+    };
+    convertQueue = convertQueue.then(task);
   }
 }
 
