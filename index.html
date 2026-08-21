@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<title>以撒 BGM 编辑器 · 网页版</title>
+<style>
+:root { --bg:#18181b; --panel:#232326; --border:#27272a; --text:#e4e4e7; --dim:#a1a1aa; --accent:#fb923c; }
+* { box-sizing:border-box; margin:0; padding:0; }
+body { background:var(--bg); color:var(--text); font-family:"Segoe UI",system-ui,sans-serif; }
+header { position:sticky; top:0; background:var(--panel); border-bottom:1px solid var(--border); padding:10px 16px; display:flex; align-items:center; gap:12px; z-index:10; flex-wrap:wrap; }
+header h1 { font-size:18px; font-weight:600; }
+header .status { flex:1; color:var(--dim); font-size:13px; min-width:100px; }
+#search { background:#2d2d31; border:1px solid var(--border); color:var(--text); border-radius:8px; padding:8px 12px; width:200px; }
+#genBtn { background:var(--accent); border:none; color:#000; padding:8px 18px; border-radius:8px; font-weight:600; cursor:pointer; }
+#genBtn:disabled { opacity:.5; cursor:wait; }
+main { padding:16px; max-width:1200px; margin:0 auto; }
+.cards { display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:10px; }
+.card { background:var(--panel); border:1px solid var(--border); border-radius:10px; padding:10px 12px; display:flex; flex-direction:column; gap:8px; }
+.card.modified { border-color:var(--accent); }
+.card .head { display:flex; align-items:center; justify-content:space-between; gap:8px; }
+.card .name { font-weight:600; font-size:14px; }
+.card .meta { color:var(--dim); font-size:11px; }
+.card .cur { font-size:12px; color:var(--dim); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.card .row { display:flex; align-items:center; gap:6px; flex-wrap:wrap; }
+.btn { background:#2d2d31; color:var(--text); border:1px solid var(--border); border-radius:6px; padding:5px 10px; cursor:pointer; font-size:12px; }
+.btn:hover { background:#3d3d42; }
+.btn.orange { background:rgba(251,146,60,.15); border-color:rgba(251,146,60,.4); color:var(--accent); }
+audio { height:28px; width:100%; }
+.badge { background:#3f3f46; color:#d4d4d8; font-size:11px; border-radius:4px; padding:1px 6px; }
+.dur { color:var(--accent); font-size:11px; font-weight:600; }
+.section { margin-bottom:20px; }
+.section h2 { font-size:14px; color:var(--accent); text-transform:uppercase; letter-spacing:1px; margin-bottom:8px; }
+#toast { position:fixed; bottom:20px; left:50%; transform:translateX(-50%); background:var(--accent); color:#000; padding:10px 20px; border-radius:8px; font-weight:600; display:none; z-index:20; max-width:90%; }
+#help { background:var(--panel); border:1px solid var(--border); border-radius:10px; padding:14px 16px; margin-bottom:16px; font-size:13px; line-height:1.7; }
+#help summary { cursor:pointer; font-weight:600; color:var(--accent); }
+#help ol { margin:8px 0 0 20px; }
+#ffStatus { font-size:12px; color:var(--dim); }
+.busy { position:fixed; inset:0; background:rgba(0,0,0,.6); display:none; align-items:center; justify-content:center; z-index:30; }
+.busy .box { background:var(--panel); border:1px solid var(--border); border-radius:10px; padding:20px 30px; font-size:14px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>以撒 BGM 编辑器</h1>
+  <input id="search" placeholder="搜索场景…">
+  <span id="ffStatus">转码引擎：未加载</span>
+  <div class="status" id="status">加载中…</div>
+  <button id="genBtn" onclick="generateMod()" disabled>生成 Mod 下载</button>
+</header>
+<main>
+  <details id="help">
+    <summary>使用说明（新手必读）</summary>
+    <ol>
+      <li>找到想换 BGM 的场景（如"标题画面"、"地下室"），点【📁 导入音乐】选一首歌（支持 mp3/flac/wav/ogg）</li>
+      <li>浏览器会自动转成游戏格式（44100Hz ogg），转完可以试听</li>
+      <li>改完后点右上角【生成 Mod 下载】，得到 zip</li>
+      <li><b>解压</b> zip 到游戏的 <b>mods</b> 文件夹（Steam 版路径：Steam/steamapps/common/The Binding of Isaac Rebirth/mods）</li>
+      <li>启动游戏 → Mods 菜单 → 启用 "Isaac BGM Editor" → 重开游戏生效</li>
+      <li>提示：Boss 战分为通用 Boss 和各专属 Boss（妈、撒旦、以撒等），都可以单独选歌；只给通用 Boss 选歌时，未单独设置的 Boss 会跟随它</li>
+    </ol>
+  </details>
+  <div class="section" id="main"></div>
+</main>
+<div class="busy" id="busy"><div class="box" id="busyText">处理中…</div></div>
+<div id="toast"></div>
+
+<script src="ffmpeg/ffmpeg.umd.js"></script>
+<script src="ffmpeg/util.umd.js"></script>
+<script src="jszip.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

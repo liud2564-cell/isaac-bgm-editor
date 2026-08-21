@@ -1,0 +1,897 @@
+{
+ "tracks": [
+  {
+   "id": "1",
+   "name": "Basement",
+   "cn": "地下室",
+   "path": "Diptera Sonata(Basement).ogg",
+   "dur": 116.6,
+   "loop": "true",
+   "group": "floors"
+  },
+  {
+   "id": "2",
+   "name": "Caves",
+   "cn": "洞穴",
+   "path": "The Caves.ogg",
+   "dur": 112.0,
+   "loop": "true",
+   "group": "floors"
+  },
+  {
+   "id": "3",
+   "name": "Depths",
+   "cn": "深渊",
+   "path": "The Depths.ogg",
+   "dur": 111.2,
+   "loop": "true",
+   "group": "floors"
+  },
+  {
+   "id": "4",
+   "name": "Cellar",
+   "cn": "酒窖",
+   "path": "The Cellar Alt.ogg",
+   "dur": 109.7,
+   "loop": "true",
+   "group": "floors"
+  },
+  {
+   "id": "5",
+   "name": "Catacombs",
+   "cn": "墓穴",
+   "path": "Catacombs.ogg",
+   "dur": 128.0,
+   "loop": "true",
+   "group": "floors"
+  },
+  {
+   "id": "6",
+   "name": "Necropolis",
+   "cn": "死城",
+   "path": "Necropolis.ogg",
+   "dur": 120.0,
+   "loop": "true",
+   "group": "floors"
+  },
+  {
+   "id": "7",
+   "name": "Womb",
+   "cn": "子宫",
+   "path": "The Womb Chapter Four.ogg",
+   "dur": 85.3,
+   "loop": "true",
+   "group": "floors"
+  },
+  {
+   "id": "8",
+   "name": "Game Over",
+   "cn": "游戏结束",
+   "path": "You Died.ogg",
+   "dur": 105.9,
+   "loop": "true",
+   "group": "rooms"
+  },
+  {
+   "id": "9",
+   "name": "Boss",
+   "cn": "Boss战",
+   "path": "Fight Ogg/Basic Boss Fight.ogg",
+   "dur": 128.0,
+   "loop": "true",
+   "group": "floors"
+  },
+  {
+   "id": "10",
+   "name": "Cathedral",
+   "cn": "大教堂",
+   "path": "Cathedral Chant.ogg",
+   "dur": 81.6,
+   "loop": "true",
+   "group": "misc"
+  },
+  {
+   "id": "11",
+   "name": "Sheol",
+   "cn": "阴间",
+   "path": "Sheol.ogg",
+   "dur": 130.9,
+   "loop": "true",
+   "group": "misc"
+  },
+  {
+   "id": "12",
+   "name": "Dark Room",
+   "cn": "黑暗房间",
+   "path": "Dark Room Alt Chapter 6.ogg",
+   "dur": 170.7,
+   "loop": "true",
+   "group": "misc"
+  },
+  {
+   "id": "13",
+   "name": "Chest",
+   "cn": "宝箱房",
+   "path": "Chest Room Chapter 6.ogg",
+   "dur": 139.6,
+   "loop": "true",
+   "group": "misc"
+  },
+  {
+   "id": "14",
+   "name": "Burning Basement",
+   "cn": "燃烧地下室",
+   "path": "Afterbirth/burning basement Loop.ogg",
+   "dur": 123.4,
+   "loop": "true",
+   "group": "floors"
+  },
+  {
+   "id": "15",
+   "name": "Flooded Caves",
+   "cn": "洪水洞穴",
+   "path": "Afterbirth/Kave Diluvii (Flooded Caves) loop.ogg",
+   "dur": 112.0,
+   "loop": "true",
+   "group": "floors"
+  },
+  {
+   "id": "16",
+   "name": "Dank Depths",
+   "cn": "潮湿深渊",
+   "path": "Afterbirth/Pulso Profundum (dank Depths ) Loop.ogg",
+   "dur": 121.3,
+   "loop": "true",
+   "group": "floors"
+  },
+  {
+   "id": "17",
+   "name": "Scarred Womb",
+   "cn": "疤痕子宫",
+   "path": "Afterbirth/Cicatrix (Scarred Womb) Loop.ogg",
+   "dur": 85.3,
+   "loop": "true",
+   "group": "floors"
+  },
+  {
+   "id": "18",
+   "name": "Blue Womb",
+   "cn": "蓝色子宫",
+   "path": "Afterbirth/Nativitate (Dead Womb Floor) Loop.ogg",
+   "dur": 96.0,
+   "loop": "true",
+   "group": "floors"
+  },
+  {
+   "id": "19",
+   "name": "Utero",
+   "cn": "子宫",
+   "path": "Utero.ogg",
+   "dur": 85.3,
+   "loop": "true",
+   "group": "floors"
+  },
+  {
+   "id": "20",
+   "name": "Boss (Depths - Mom)",
+   "cn": "Boss (深渊-妈)",
+   "path": "Fight Ogg/Mom Fight.ogg",
+   "dur": 126.0,
+   "loop": "true",
+   "group": "boss"
+  },
+  {
+   "id": "21",
+   "name": "Boss (Womb - Mom's Heart)",
+   "cn": "Boss (子宫-妈心)",
+   "path": "Fight Ogg/Womb Fight.ogg",
+   "dur": 120.0,
+   "loop": "true",
+   "group": "boss"
+  },
+  {
+   "id": "22",
+   "name": "Boss (Cathedral - Isaac)",
+   "cn": "Boss (大教堂-以撒)",
+   "path": "Fight Ogg/Isaac Fight.ogg",
+   "dur": 160.0,
+   "loop": "true",
+   "group": "boss"
+  },
+  {
+   "id": "23",
+   "name": "Boss (Sheol - Satan)",
+   "cn": "Boss (阴间-撒旦)",
+   "path": "Fight Ogg/Satan Fight.ogg",
+   "dur": 116.4,
+   "loop": "true",
+   "group": "boss"
+  },
+  {
+   "id": "24",
+   "name": "Boss (Dark Room)",
+   "cn": "Boss (黑暗房间)",
+   "path": "Fight Ogg/Dark Room Fight.ogg",
+   "dur": 112.9,
+   "loop": "true",
+   "group": "boss"
+  },
+  {
+   "id": "25",
+   "name": "Boss (Chest - ???)",
+   "cn": "Boss (宝箱房-???）",
+   "path": "Fight Ogg/Chest Fight.ogg",
+   "dur": 102.5,
+   "loop": "true",
+   "group": "boss"
+  },
+  {
+   "id": "26",
+   "name": "Boss (alternate)",
+   "cn": "Boss (变体)",
+   "path": "Afterbirth/Cerebrum Dispersio (boss alt) Loop.ogg",
+   "dur": 121.6,
+   "loop": "true",
+   "group": "boss"
+  },
+  {
+   "id": "27",
+   "name": "Boss (Blue Womb - Hush)",
+   "cn": "Boss (蓝色子宫-静静)",
+   "path": "Afterbirth/Morituros (dead womb boss) Loop.ogg",
+   "dur": 120.0,
+   "loop": "true",
+   "group": "boss"
+  },
+  {
+   "id": "28",
+   "name": "Boss (Ultra Greed)",
+   "cn": "Boss (超级贪婪)",
+   "path": "Afterbirth/Chorus Mortis (Punk Credit) Loop.ogg",
+   "dur": 110.5,
+   "loop": "true",
+   "group": "boss"
+  },
+  {
+   "id": "30",
+   "name": "Library Room",
+   "cn": "图书馆",
+   "path": "Library.ogg",
+   "dur": 69.8,
+   "loop": "true",
+   "group": "rooms"
+  },
+  {
+   "id": "31",
+   "name": "Secret Room",
+   "cn": "隐藏房间",
+   "path": "Secret to Everyone.ogg",
+   "dur": 51.0,
+   "loop": "true",
+   "group": "rooms"
+  },
+  {
+   "id": "32",
+   "name": "Secret Room Alt",
+   "cn": "隐藏房间变体",
+   "path": "Secret Room ALT.ogg",
+   "dur": 51.0,
+   "loop": "true",
+   "group": "rooms"
+  },
+  {
+   "id": "33",
+   "name": "Devil Room",
+   "cn": "恶魔房",
+   "path": "Deal With the Devil.ogg",
+   "dur": 56.0,
+   "loop": "true",
+   "group": "rooms"
+  },
+  {
+   "id": "34",
+   "name": "Angel Room",
+   "cn": "天使房",
+   "path": "Angel Room.ogg",
+   "dur": 67.2,
+   "loop": "true",
+   "group": "rooms"
+  },
+  {
+   "id": "35",
+   "name": "Shop Room",
+   "cn": "商店",
+   "path": "Store Loop.ogg",
+   "dur": 66.0,
+   "loop": "true",
+   "group": "rooms"
+  },
+  {
+   "id": "36",
+   "name": "Arcade Room",
+   "cn": "街机厅",
+   "path": "Retro Beats 8-6-14.ogg",
+   "dur": 51.7,
+   "loop": "true",
+   "group": "rooms"
+  },
+  {
+   "id": "37",
+   "name": "Boss Room (empty)",
+   "cn": "Boss房 (空)",
+   "path": "The Calm.ogg",
+   "dur": 116.5,
+   "loop": "true",
+   "group": "rooms"
+  },
+  {
+   "id": "38",
+   "name": "Challenge Room (fight)",
+   "cn": "挑战房 (战斗)",
+   "path": "Ambush.ogg",
+   "dur": 128.0,
+   "loop": "true",
+   "group": "rooms"
+  },
+  {
+   "id": "39",
+   "name": "Boss Rush",
+   "cn": "Boss冲刺",
+   "path": "Boss Rush.ogg",
+   "dur": 112.0,
+   "loop": "true",
+   "group": "rooms"
+  },
+  {
+   "id": "40",
+   "name": "Boss Rush (jingle)",
+   "cn": "Boss冲刺 (提示音)",
+   "path": "JINGLE OGG/Ambush Jinle outro V3_04.ogg",
+   "dur": 6.1,
+   "loop": "false",
+   "group": "rooms"
+  },
+  {
+   "id": "41",
+   "name": "Boss (alternate alternate)",
+   "cn": "Boss (双重变体)",
+   "path": "Repentance/Boss ALT.ogg",
+   "dur": 120.0,
+   "loop": "true",
+   "group": "boss"
+  },
+  {
+   "id": "42",
+   "name": "Boss Death Alternate Alternate (jingle)",
+   "cn": "Boss死亡变体 (提示音)",
+   "path": "Repentance/Alt Boss Track Jingle.ogg",
+   "dur": 9.0,
+   "loop": "false",
+   "group": "rooms"
+  },
+  {
+   "id": "43",
+   "name": "Boss (Mother)",
+   "cn": "Boss (妈)",
+   "path": "Repentance/MOTHER_BOSS_V6.ogg",
+   "dur": 103.4,
+   "loop": "true",
+   "group": "boss"
+  },
+  {
+   "id": "44",
+   "name": "Boss (Dogma)",
+   "cn": "Boss (道格玛)",
+   "path": "Repentance/Static Boss Light V2.ogg",
+   "dur": 106.7,
+   "loop": "true",
+   "group": "boss"
+  },
+  {
+   "id": "45",
+   "name": "Boss (Beast)",
+   "cn": "Boss (野兽)",
+   "path": "Repentance/The_End_FAMINE.ogg",
+   "dur": 90.0,
+   "loop": "true",
+   "group": "boss"
+  },
+  {
+   "id": "47",
+   "name": "Boss Mother Death (jingle)",
+   "cn": "Boss妈死亡 (提示音)",
+   "path": "Repentance/Alt Boss Track Jingle.ogg",
+   "dur": 9.0,
+   "loop": "false",
+   "group": "boss"
+  },
+  {
+   "id": "48",
+   "name": "Boss Dogma Death (jingle)",
+   "cn": "Boss道格玛死亡 (提示音)",
+   "path": "Repentance/Static Boss Light V2 Jingle.ogg",
+   "dur": 6.5,
+   "loop": "false",
+   "group": "boss"
+  },
+  {
+   "id": "49",
+   "name": "Boss Beast Death (jingle)",
+   "cn": "Boss野兽死亡 (提示音)",
+   "path": "Repentance/Alt Boss Track Jingle.ogg",
+   "dur": 9.0,
+   "loop": "false",
+   "group": "boss"
+  },
+  {
+   "id": "50",
+   "name": "Planetarium",
+   "cn": "天文馆",
+   "path": "Repentance/Planetarium.ogg",
+   "dur": 96.0,
+   "loop": "true",
+   "group": "rooms"
+  },
+  {
+   "id": "51",
+   "name": "Secret Room Alt Alt",
+   "cn": "隐藏房间变体2",
+   "path": "Repentance/Super Secret Room Loop.ogg",
+   "dur": 51.0,
+   "loop": "true",
+   "group": "rooms"
+  },
+  {
+   "id": "52",
+   "name": "Boss Room (empty, twisted)",
+   "cn": "Boss房 (空, 扭曲)",
+   "path": "Repentance/The Calm Twisted V4 Loop.ogg",
+   "dur": 116.5,
+   "loop": "true",
+   "group": "rooms"
+  },
+  {
+   "id": "60",
+   "name": "Credits",
+   "cn": "制作人员名单",
+   "path": "Credits Roll.ogg",
+   "dur": 53.3,
+   "loop": "true",
+   "group": "misc"
+  },
+  {
+   "id": "61",
+   "name": "Title Screen",
+   "cn": "标题画面",
+   "path": "Title Screen.ogg",
+   "dur": 66.5,
+   "loop": "true",
+   "group": "misc"
+  },
+  {
+   "id": "62",
+   "name": "Title Screen (Afterbirth)",
+   "cn": "标题画面 (重生后)",
+   "path": "Afterbirth/ReGenesis (loop) V3.ogg",
+   "dur": 66.5,
+   "loop": "true",
+   "group": "misc"
+  },
+  {
+   "id": "63",
+   "name": "Title Screen (Repentance)",
+   "cn": "标题画面 (忏悔)",
+   "path": "Repentance/Genesis Retake Light Loop.ogg",
+   "dur": 66.5,
+   "loop": "true",
+   "group": "misc"
+  },
+  {
+   "id": "64",
+   "name": "Game start (jingle, twisted)",
+   "cn": "游戏开始 (提示音, 扭曲)",
+   "path": "Repentance/Title Screen Stinger MB.ogg",
+   "dur": 5.2,
+   "loop": "false",
+   "group": "misc"
+  },
+  {
+   "id": "65",
+   "name": "Nightmare (alt)",
+   "cn": "噩梦 (变体)",
+   "path": "Repentance/Nightmare_V4.ogg",
+   "dur": 9.5,
+   "loop": "false",
+   "group": "misc"
+  },
+  {
+   "id": "66",
+   "name": "Mom's Shadow Intro",
+   "cn": "妈的影子过场",
+   "path": "Repentance/Moms_Shadow_Cut_Scene.ogg",
+   "dur": 8.8,
+   "loop": "false",
+   "group": "misc"
+  },
+  {
+   "id": "67",
+   "name": "Dogma Intro",
+   "cn": "道格玛过场",
+   "path": "Repentance/Dogma_static_Cut_Scene_V5.ogg",
+   "dur": 13.0,
+   "loop": "false",
+   "group": "misc"
+  },
+  {
+   "id": "68",
+   "name": "Strange Door (jingle)",
+   "cn": "奇怪的门 (提示音)",
+   "path": "Repentance/Genesis_SFX_Jingle.ogg",
+   "dur": 4.3,
+   "loop": "false",
+   "group": "misc"
+  },
+  {
+   "id": "69",
+   "name": "Echoes Reverse",
+   "cn": "回声倒放",
+   "path": "Repentance/Echoes Reverse.ogg",
+   "dur": 64.0,
+   "loop": "true",
+   "group": "misc"
+  },
+  {
+   "id": "70",
+   "name": "Credits Alt",
+   "cn": "制作人员名单变体",
+   "path": "Jesus Loves Uke.ogg",
+   "dur": 82.8,
+   "loop": "false",
+   "group": "misc"
+  },
+  {
+   "id": "71",
+   "name": "Credits Alt Final",
+   "cn": "制作人员名单最终变体",
+   "path": "Repentance/Jesus Loves Viggo V3.ogg",
+   "dur": 146.5,
+   "loop": "false",
+   "group": "misc"
+  },
+  {
+   "id": "81",
+   "name": "Boss (jingle)",
+   "cn": "Boss (提示音)",
+   "path": "JINGLE OGG/Boss Fight intro jingle V2.1.ogg",
+   "dur": 6.6,
+   "loop": "false",
+   "group": "rooms"
+  },
+  {
+   "id": "83",
+   "name": "Boss Death (jingle)",
+   "cn": "Boss死亡 (提示音)",
+   "path": "JINGLE OGG/Boss FIght jingle OUTRO v2_12.ogg",
+   "dur": 7.7,
+   "loop": "false",
+   "group": "rooms"
+  },
+  {
+   "id": "84",
+   "name": "Holy Room Find (jingle)",
+   "cn": "找到圣房 (提示音)",
+   "path": "JINGLE OGG/Angel Room Appear V2_07.ogg",
+   "dur": 5.0,
+   "loop": "false",
+   "group": "rooms"
+  },
+  {
+   "id": "85",
+   "name": "Secret Room Find (jingle)",
+   "cn": "找到隐藏房 (提示音)",
+   "path": "JINGLE OGG/secret room find v2_07.ogg",
+   "dur": 4.8,
+   "loop": "false",
+   "group": "rooms"
+  },
+  {
+   "id": "87",
+   "name": "Treasure Room Entry (jingle) 1",
+   "cn": "宝箱房入口 (提示音) 1",
+   "path": "JINGLE OGG/treasure room discoverA.ogg",
+   "dur": 3.9,
+   "loop": "false",
+   "group": "rooms"
+  },
+  {
+   "id": "88",
+   "name": "Treasure Room Entry (jingle) 2",
+   "cn": "宝箱房入口 (提示音) 2",
+   "path": "JINGLE OGG/treasure room discoverB.ogg",
+   "dur": 4.0,
+   "loop": "false",
+   "group": "rooms"
+  },
+  {
+   "id": "89",
+   "name": "Treasure Room Entry (jingle) 3",
+   "cn": "宝箱房入口 (提示音) 3",
+   "path": "JINGLE OGG/treasure room discoverC.ogg",
+   "dur": 4.1,
+   "loop": "false",
+   "group": "rooms"
+  },
+  {
+   "id": "90",
+   "name": "Treasure Room Entry (jingle) 4",
+   "cn": "宝箱房入口 (提示音) 4",
+   "path": "JINGLE OGG/treasure room discover_03.ogg",
+   "dur": 4.5,
+   "loop": "false",
+   "group": "rooms"
+  },
+  {
+   "id": "91",
+   "name": "Challenge Room Entry (jingle)",
+   "cn": "挑战房入口 (提示音)",
+   "path": "JINGLE OGG/Ambush jingle.V2_01.ogg",
+   "dur": 7.5,
+   "loop": "false",
+   "group": "rooms"
+  },
+  {
+   "id": "92",
+   "name": "Challenge Room Outro (jingle)",
+   "cn": "挑战房结束 (提示音)",
+   "path": "JINGLE OGG/Ambush Jinle outro V3_04.ogg",
+   "dur": 6.1,
+   "loop": "false",
+   "group": "rooms"
+  },
+  {
+   "id": "93",
+   "name": "Game Over (jingle)",
+   "cn": "游戏结束 (提示音)",
+   "path": "JINGLE OGG/Isaac Died_02.ogg",
+   "dur": 5.0,
+   "loop": "false",
+   "group": "rooms"
+  },
+  {
+   "id": "94",
+   "name": "Devil Room appear (jingle)",
+   "cn": "恶魔房出现 (提示音)",
+   "path": "JINGLE OGG/Satan Room Appear V2_01.ogg",
+   "dur": 4.8,
+   "loop": "false",
+   "group": "rooms"
+  },
+  {
+   "id": "95",
+   "name": "Game start (jingle)",
+   "cn": "游戏开始 (提示音)",
+   "path": "JINGLE OGG/Title Screen jingle V1_01.ogg",
+   "dur": 4.5,
+   "loop": "false",
+   "group": "rooms"
+  },
+  {
+   "id": "96",
+   "name": "Nightmare",
+   "cn": "噩梦",
+   "path": "JINGLE OGG/boss fight intro jingle_01.ogg",
+   "dur": 6.5,
+   "loop": "false",
+   "group": "rooms"
+  },
+  {
+   "id": "97",
+   "name": "Boss Death Alternate (jingle)",
+   "cn": "Boss死亡变体 (提示音)",
+   "path": "Afterbirth/Cerebrum Dispersio (boss alt) end.ogg",
+   "dur": 6.9,
+   "loop": "false",
+   "group": "rooms"
+  },
+  {
+   "id": "98",
+   "name": "Boss Hush Death (jingle)",
+   "cn": "Boss静静死亡 (提示音)",
+   "path": "Afterbirth/Morituros (dead womb boss) outro.ogg",
+   "dur": 4.9,
+   "loop": "false",
+   "group": "rooms"
+  },
+  {
+   "id": "100",
+   "name": "Intro Voiceover",
+   "cn": "开场旁白",
+   "path": "IntroVoiceover.ogg",
+   "dur": 154.4,
+   "loop": "false",
+   "group": "misc"
+  },
+  {
+   "id": "101",
+   "name": "Epilogue Voiceover",
+   "cn": "尾声旁白",
+   "path": "Epilogue_01m.ogg",
+   "dur": 44.2,
+   "loop": "false",
+   "group": "misc"
+  },
+  {
+   "id": "102",
+   "name": "Void",
+   "cn": "虚空",
+   "path": "Void.ogg",
+   "dur": 111.3,
+   "loop": "true",
+   "group": "misc"
+  },
+  {
+   "id": "103",
+   "name": "Boss (Void)",
+   "cn": "Boss (虚空-混乱)",
+   "path": "Fight Ogg/Delirium Fight.ogg",
+   "dur": 106.7,
+   "loop": "true",
+   "group": "boss"
+  },
+  {
+   "id": "104",
+   "name": "Downpour",
+   "cn": "暴雨",
+   "path": "Repentance/Downpour.ogg",
+   "dur": 106.7,
+   "loop": "true",
+   "group": "floors"
+  },
+  {
+   "id": "105",
+   "name": "Mines",
+   "cn": "矿洞",
+   "path": "Repentance/Mines.ogg",
+   "dur": 112.9,
+   "loop": "true",
+   "group": "floors"
+  },
+  {
+   "id": "106",
+   "name": "Mausoleum",
+   "cn": "陵墓",
+   "path": "Repentance/Mausoleum.ogg",
+   "dur": 125.0,
+   "loop": "true",
+   "group": "floors"
+  },
+  {
+   "id": "107",
+   "name": "Corpse",
+   "cn": "尸层",
+   "path": "Repentance/Corpse.ogg",
+   "dur": 104.7,
+   "loop": "true",
+   "group": "floors"
+  },
+  {
+   "id": "108",
+   "name": "Dross",
+   "cn": "污水",
+   "path": "Repentance/Sewer.ogg",
+   "dur": 128.0,
+   "loop": "true",
+   "group": "floors"
+  },
+  {
+   "id": "109",
+   "name": "Ashpit",
+   "cn": "灰坑",
+   "path": "Repentance/Ash Pit.ogg",
+   "dur": 126.8,
+   "loop": "true",
+   "group": "floors"
+  },
+  {
+   "id": "110",
+   "name": "Gehenna",
+   "cn": "地狱火",
+   "path": "Repentance/Gehenna.ogg",
+   "dur": 130.9,
+   "loop": "true",
+   "group": "floors"
+  },
+  {
+   "id": "111",
+   "name": "not done",
+   "cn": "未完成",
+   "path": "The Womb Chapter Four.ogg",
+   "dur": 85.3,
+   "loop": "true",
+   "group": "misc"
+  },
+  {
+   "id": "112",
+   "name": "Home",
+   "cn": "家",
+   "path": "Repentance/Echoes Of Mom.ogg",
+   "dur": 64.0,
+   "loop": "true",
+   "group": "misc"
+  },
+  {
+   "id": "113",
+   "name": "Final Voiceover",
+   "cn": "最终旁白",
+   "path": "Repentance/End End End VO.ogg",
+   "dur": 125.4,
+   "loop": "false",
+   "group": "misc"
+  },
+  {
+   "id": "114",
+   "name": "Downpour (reversed)",
+   "cn": "暴雨 (倒放)",
+   "path": "Repentance/Downpour Reverse.ogg",
+   "dur": 106.7,
+   "loop": "true",
+   "group": "floors"
+  },
+  {
+   "id": "115",
+   "name": "Dross (reversed)",
+   "cn": "污水 (倒放)",
+   "path": "Repentance/Dross Reverse.ogg",
+   "dur": 128.0,
+   "loop": "true",
+   "group": "floors"
+  },
+  {
+   "id": "116",
+   "name": "Abandoned Mineshaft",
+   "cn": "废弃矿井",
+   "path": "Repentance/Vast Empty Chasm.ogg",
+   "dur": 96.0,
+   "loop": "true",
+   "group": "floors"
+  },
+  {
+   "id": "117",
+   "name": "Mineshaft Escape",
+   "cn": "矿井逃脱",
+   "path": "Repentance/Chased By Death V3.ogg",
+   "dur": 96.3,
+   "loop": "true",
+   "group": "floors"
+  },
+  {
+   "id": "118",
+   "name": "Genesis (reversed)",
+   "cn": "起源 (倒放)",
+   "path": "Repentance/backwards/Genesis ii Reverse Main Loop.ogg",
+   "dur": 66.5,
+   "loop": "true",
+   "group": "floors"
+  }
+ ],
+ "bossIds": [
+  "20",
+  "21",
+  "22",
+  "23",
+  "24",
+  "25",
+  "26",
+  "27",
+  "28",
+  "41",
+  "42",
+  "43",
+  "44",
+  "45",
+  "47",
+  "48",
+  "49",
+  "103"
+ ]
+}
