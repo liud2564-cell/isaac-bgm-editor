@@ -90,7 +90,7 @@ function render() {
     if (!items.length) continue;
     const sec = document.createElement('div');
     sec.className = 'section';
-    sec.innerHTML = `<h2>${gname} (${items.length})</h2>`;
+    sec.innerHTML = `<h2><img class="grpimg" src="bg_${gkey}.png" alt="">${gname} (${items.length})</h2>`;
     const cards = document.createElement('div');
     cards.className = 'cards';
     for (const t of items) {
