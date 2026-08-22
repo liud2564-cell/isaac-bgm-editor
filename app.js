@@ -97,20 +97,25 @@ function render() {
       const ch = changes[t.id];
       const conv = converting[t.id];
       const card = document.createElement('div');
-      card.className = 'card' + (ch || conv ? ' modified' : '');
+      card.className = 'card ' + gkey + (ch || conv ? ' modified' : '');
       const isBossLinked = BOSS_IDS.includes(t.id);
       card.innerHTML = `
-        <div class="head">
-          <span class="name">${t.cn || t.name}${t.cn ? ` <span class="badge">${t.name}</span>` : ''}</span>
-          <span class="dur">${ch ? fmtDur(ch.dur || 0) : (t.dur ? fmtDur(t.dur) : '')}</span>
+        <div class="top">
+          <span>${t.cn || t.name}</span>
+          ${t.cn ? `<span class="badge">${t.name}</span>` : ''}
         </div>
-        <div class="cur">🎵 ${conv ? '⏳ 转码中…' : (ch ? ch.name : (t.path || '无'))}${isBossLinked && !ch && !conv ? ' <span class="badge">Boss联动</span>' : ''}</div>
-        ${ch && !conv ? `<audio controls preload="metadata" src="${ch.url}"></audio>` : ''}
-        <div class="row">
-          <button class="btn orange" onclick="pickFile('${t.id}')">📁 导入音乐</button>
-          <input type="file" id="file_${t.id}" accept="audio/*" multiple style="display:none"
-                 onchange="uploadTo('${t.id}', this.files, this)">
-          ${ch ? `<button class="btn" onclick="resetOne('${t.id}')">↩ 还原</button>` : ''}
+        <div class="body">
+          <div class="cur">🎵 ${conv ? '⏳ 转码中…' : (ch ? ch.name : (t.path || '无'))}${isBossLinked && !ch && !conv ? ' <span class="badge">Boss联动</span>' : ''}</div>
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <span class="dur">${ch ? fmtDur(ch.dur || 0) : (t.dur ? fmtDur(t.dur) : '')}</span>
+          </div>
+          ${ch && !conv ? `<audio controls preload="metadata" src="${ch.url}"></audio>` : ''}
+          <div class="row">
+            <button class="btn orange" onclick="pickFile('${t.id}')">📁 导入音乐</button>
+            <input type="file" id="file_${t.id}" accept="audio/*" multiple style="display:none"
+                   onchange="uploadTo('${t.id}', this.files, this)">
+            ${ch ? `<button class="btn" onclick="resetOne('${t.id}')">↩ 还原</button>` : ''}
+          </div>
         </div>`;
       cards.appendChild(card);
     }
@@ -238,6 +243,59 @@ function buildMusicXml() {
     s = s.slice(0, st) + newEl + s.slice(en);
   }
   return s;
+}
+
+// ---------- import a previously generated mod zip (load as editable scheme) ----------
+async function importModZip(file) {
+  if (!file) return;
+  const busy = document.getElementById('busy');
+  const bt = document.getElementById('busyText');
+  busy.style.display = 'flex';
+  bt.textContent = '解析 mod zip…';
+  try {
+    const zip = await JSZip.loadAsync(file);
+    // read music.xml
+    const xmlEntry = zip.file('resources/music.xml');
+    if (!xmlEntry) throw new Error('不是有效的 mod zip（缺 resources/music.xml）');
+    const xmlText = await xmlEntry.async('string');
+    const doc = new DOMParser().parseFromString(xmlText, 'text/xml');
+
+    // collect: file -> [track ids], keep only meaningful ones
+    const fileMap = {};   // track_NN.ogg -> [ids]
+    for (const t of doc.querySelectorAll('track')) {
+      const id = t.getAttribute('id');
+      const path = t.getAttribute('path') || '';
+      if (!id || !path.startsWith('track_')) continue;
+      (fileMap[path] = fileMap[path] || []).push(id);
+    }
+
+    // load audio blobs, assign to the FIRST id that references each file
+    const newChanges = {};
+    for (const [path, ids] of Object.entries(fileMap)) {
+      const entry = zip.file('resources/music/' + path);
+      if (!entry) continue;
+      const blob = await entry.async('blob');
+      const url = URL.createObjectURL(blob);
+      const name = ids[0];
+      newChanges[name] = { blob, url, name: path, dur: await probeDuration(url) };
+      // boss-linked followers (track_9 referenced by 20-28 etc.) map back to '9'
+      if (path === 'track_9.ogg') {
+        for (const id of ids) newChanges[id] = newChanges['9'];
+      }
+    }
+
+    // replace current changes
+    for (const id of Object.keys(changes)) {
+      if (changes[id] && changes[id].url) URL.revokeObjectURL(changes[id].url);
+    }
+    Object.keys(changes).forEach(k => delete changes[k]);
+    Object.assign(changes, newChanges);
+    toast(`已导入 mod 方案：${Object.keys(changes).length} 个场景`);
+  } catch (e) {
+    toast('导入失败：' + e.message);
+  }
+  busy.style.display = 'none';
+  render();
 }
 
 // ---------- mod generation (zip download) ----------

@@ -4,39 +4,133 @@
 <meta charset="UTF-8">
 <title>以撒 BGM 编辑器 · 网页版</title>
 <style>
-:root { --bg:#18181b; --panel:#232326; --border:#27272a; --text:#e4e4e7; --dim:#a1a1aa; --accent:#fb923c; }
+:root {
+  --bg:#262423;
+  --panel:#33302d;
+  --card-top:#3d5a80;
+  --card-body:#e8dcc4;
+  --text:#262423;
+  --dim:#7a6f63;
+  --accent:#c0392b;
+  --link:#66afe9;
+}
 * { box-sizing:border-box; margin:0; padding:0; }
-body { background:var(--bg); color:var(--text); font-family:"Segoe UI",system-ui,sans-serif; }
-header { position:sticky; top:0; background:var(--panel); border-bottom:1px solid var(--border); padding:10px 16px; display:flex; align-items:center; gap:12px; z-index:10; flex-wrap:wrap; }
-header h1 { font-size:18px; font-weight:600; }
-header .status { flex:1; color:var(--dim); font-size:13px; min-width:100px; }
-#search { background:#2d2d31; border:1px solid var(--border); color:var(--text); border-radius:8px; padding:8px 12px; width:200px; }
-#genBtn { background:var(--accent); border:none; color:#000; padding:8px 18px; border-radius:8px; font-weight:600; cursor:pointer; }
+body {
+  background:var(--bg);
+  color:var(--text);
+  font-family:"Courier New",ui-monospace,monospace;
+  font-weight:600;
+  line-height:1.5;
+}
+/* 两侧地牢砖墙 */
+body::before, body::after {
+  content:"";
+  position:fixed;
+  top:0; bottom:0;
+  width:48px;
+  z-index:1;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      #3d3228 0px,
+      #3d3228 22px,
+      #2a2118 22px,
+      #2a2118 24px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      #544636 0px,
+      #544636 10px,
+      #3d3228 10px,
+      #3d3228 12px
+    );
+  image-rendering:pixelated;
+  border-right:3px solid #1a1512;
+}
+body::before { left:0; }
+body::after { right:0; border-right:none; border-left:3px solid #1a1512; }
+
+header {
+  position:sticky; top:0;
+  background:#1a1512;
+  border-bottom:4px solid #3d3228;
+  padding:10px 16px;
+  display:flex; align-items:center; gap:12px; flex-wrap:wrap;
+  z-index:10;
+}
+header h1 { font-size:22px; color:#e8dcc4; letter-spacing:2px; text-shadow:2px 2px 0 #000; }
+#search { background:#3d3228; border:2px solid #544636; color:#e8dcc4; border-radius:4px; padding:8px 12px; width:200px; font-family:inherit; }
+#genBtn { background:var(--accent); border:none; color:#fff; padding:8px 18px; border-radius:4px; font-weight:700; cursor:pointer; font-family:inherit; text-shadow:1px 1px 0 #000; }
 #genBtn:disabled { opacity:.5; cursor:wait; }
-main { padding:16px; max-width:1200px; margin:0 auto; }
-.cards { display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:10px; }
-.card { background:var(--panel); border:1px solid var(--border); border-radius:10px; padding:10px 12px; display:flex; flex-direction:column; gap:8px; }
-.card.modified { border-color:var(--accent); }
-.card .head { display:flex; align-items:center; justify-content:space-between; gap:8px; }
-.card .name { font-weight:600; font-size:14px; }
-.card .meta { color:var(--dim); font-size:11px; }
-.card .cur { font-size:12px; color:var(--dim); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.btn.imp { background:#2e7d4e; border:2px solid #1a1512; color:#fff; padding:8px 14px; border-radius:4px; cursor:pointer; font-family:inherit; font-weight:700; text-shadow:1px 1px 0 #000; display:inline-flex; align-items:center; gap:6px; }
+.btn.imp:hover { background:#3a9a61; }
+#ffStatus { font-size:12px; color:#8a8077; }
+.status { flex:1; color:#8a8077; font-size:13px; min-width:100px; }
+
+main { position:relative; z-index:2; padding:20px 60px; max-width:1240px; margin:0 auto; }
+
+.section { margin-bottom:24px; }
+.section h2 {
+  font-size:15px; color:#e8dcc4; letter-spacing:1px; margin-bottom:10px;
+  border-bottom:2px solid #3d3228; padding-bottom:4px;
+}
+
+/* 场景卡片 = 维基道具卡风格 */
+.cards { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:12px; }
+.card {
+  border-radius:6px;
+  overflow:hidden;
+  border:3px solid #1a1512;
+  box-shadow:0 3px 0 rgba(0,0,0,.4);
+}
+.card .top {
+  padding:6px 10px;
+  color:#fff;
+  font-size:14px;
+  font-weight:700;
+  text-shadow:1px 1px 0 #000;
+  display:flex; align-items:center; justify-content:space-between; gap:8px;
+}
+.card.floors .top { background:#3d5a80; }
+.card.boss .top { background:#a03030; }
+.card.rooms .top { background:#2e7d4e; }
+.card.misc .top { background:#6a4f8f; }
+.card .top .badge { background:rgba(0,0,0,.35); color:#fff; font-size:11px; border-radius:3px; padding:1px 6px; font-weight:600; }
+.card .body {
+  background:var(--card-body);
+  color:var(--text);
+  padding:8px 10px;
+  font-size:12px;
+  display:flex; flex-direction:column; gap:6px;
+  font-weight:600;
+}
+.card .cur { color:#5c5245; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.card .dur { color:var(--accent); font-weight:700; font-size:12px; }
 .card .row { display:flex; align-items:center; gap:6px; flex-wrap:wrap; }
-.btn { background:#2d2d31; color:var(--text); border:1px solid var(--border); border-radius:6px; padding:5px 10px; cursor:pointer; font-size:12px; }
-.btn:hover { background:#3d3d42; }
-.btn.orange { background:rgba(251,146,60,.15); border-color:rgba(251,146,60,.4); color:var(--accent); }
-audio { height:28px; width:100%; }
-.badge { background:#3f3f46; color:#d4d4d8; font-size:11px; border-radius:4px; padding:1px 6px; }
-.dur { color:var(--accent); font-size:11px; font-weight:600; }
-.section { margin-bottom:20px; }
-.section h2 { font-size:14px; color:var(--accent); text-transform:uppercase; letter-spacing:1px; margin-bottom:8px; }
-#toast { position:fixed; bottom:20px; left:50%; transform:translateX(-50%); background:var(--accent); color:#000; padding:10px 20px; border-radius:8px; font-weight:600; display:none; z-index:20; max-width:90%; }
-#help { background:var(--panel); border:1px solid var(--border); border-radius:10px; padding:14px 16px; margin-bottom:16px; font-size:13px; line-height:1.7; }
-#help summary { cursor:pointer; font-weight:600; color:var(--accent); }
+.btn {
+  background:#3d3228; color:#e8dcc4; border:2px solid #1a1512; border-radius:4px;
+  padding:5px 10px; cursor:pointer; font-size:12px; font-family:inherit; font-weight:700;
+  text-shadow:1px 1px 0 #000;
+}
+.btn:hover { background:#544636; }
+.btn.orange { background:var(--accent); border-color:#1a1512; color:#fff; }
+.btn.orange:hover { background:#d0452f; }
+audio { height:26px; width:100%; }
+audio::-webkit-media-controls-panel { background:#d8ccb4; }
+
+/* 修改状态：顶条变红 */
+.card.modified .top { background:var(--accent) !important; }
+
+#help { background:#1a1512; border:3px solid #3d3228; border-radius:6px; padding:12px 16px; margin-bottom:18px; font-size:12px; color:#c4b9ab; }
+#help summary { cursor:pointer; font-weight:700; color:var(--link); }
 #help ol { margin:8px 0 0 20px; }
-#ffStatus { font-size:12px; color:var(--dim); }
-.busy { position:fixed; inset:0; background:rgba(0,0,0,.6); display:none; align-items:center; justify-content:center; z-index:30; }
-.busy .box { background:var(--panel); border:1px solid var(--border); border-radius:10px; padding:20px 30px; font-size:14px; }
+#help b { color:#e8dcc4; }
+
+#toast { position:fixed; bottom:20px; left:50%; transform:translateX(-50%); background:var(--accent); color:#fff; padding:10px 20px; border-radius:4px; font-weight:700; display:none; z-index:30; border:3px solid #1a1512; text-shadow:1px 1px 0 #000; }
+.busy { position:fixed; inset:0; background:rgba(0,0,0,.7); display:none; align-items:center; justify-content:center; z-index:40; }
+.busy .box { background:#1a1512; border:3px solid #544636; border-radius:6px; padding:20px 30px; font-size:14px; color:#e8dcc4; }
+
+@media (max-width:700px) { body::before, body::after { display:none; } main { padding:12px; } }
 </style>
 </head>
 <body>
@@ -45,6 +139,9 @@ audio { height:28px; width:100%; }
   <input id="search" placeholder="搜索场景…">
   <span id="ffStatus">转码引擎：未加载</span>
   <div class="status" id="status">加载中…</div>
+  <label class="btn imp" for="importZip">📂 导入 Mod</label>
+  <input type="file" id="importZip" accept=".zip" style="display:none"
+         onchange="importModZip(this.files[0]); this.value=''">
   <button id="genBtn" onclick="generateMod()" disabled>生成 Mod 下载</button>
 </header>
 <main>
